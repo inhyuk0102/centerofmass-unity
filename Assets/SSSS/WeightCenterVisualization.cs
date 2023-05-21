@@ -16,7 +16,8 @@ public class WeightCenterVisualization : MonoBehaviour
 
     }
     
-    void Update()
+
+    void Massofcenter()
     {
         // 무게중심 계산
         Vector3 centerOfMass = Vector3.zero;
@@ -26,12 +27,21 @@ public class WeightCenterVisualization : MonoBehaviour
         {
             centerOfMass += rb.worldCenterOfMass * rb.mass;
             totalMass += rb.mass;
-       }
+        }
 
 
         centerOfMass /= totalMass;
 
         // 무게중심 오브젝트 이동
         centerObject.transform.position = centerOfMass;
+    }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            rigidbodies = building.GetComponentsInChildren<Rigidbody>();
+
+        }
+        Massofcenter();
     }
 }
